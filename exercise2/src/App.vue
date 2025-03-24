@@ -16,7 +16,8 @@
   </div>
   <h4>Solution</h4>
   <div class="solution">
-    <List data="people" options="options"></List>
+    <!-- Added @page-changed="handlePageChange" to listen for the 'page-changed' event from the child component -->
+    <List :data="people" :options="options" @page-changed="handlePageChange"></List>
   </div>
 
 </template>
@@ -36,12 +37,18 @@
     },
     created() {
       fetch('https://suade.org/filehosting/challenges/people.json')
-        .then(function(response) {
-          response.json();
-        })
-        .then(function(data) {
+        // Updated fetch logic to properly handle the response and errors
+        .then(response => response.json())
+        .then(data => {
           this.people = data;
-        });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    },
+    // Handle the "page-changed" event and update offset based on the new page number
+    methods: {
+      handlePageChange(newPage) {
+        this.options.pagination.offset = newPage * this.options.pagination.limit;
+      },
     },
   };
 

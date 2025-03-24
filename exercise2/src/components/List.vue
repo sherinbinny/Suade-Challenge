@@ -7,9 +7,10 @@
   </ul>
   <div class="pagination">
     <ul>
-      <li @click="changePage(currentPage-1)" :class="{disabled: currentPage === 0}">&lt;</li>
-      <li v-for="p in pages" :key="p" @click="changePage(p)" :class="{active: p === currentPage}">{{ p + 1 }}</li>
-      <li @click="changePage(currentPage+1)" :class="{disabled: currentPage === pages.length - 1}">&gt;</li>
+      <!-- Fixed error by placing the :class binding before @click. -->
+      <li :class="{disabled: currentPage === 0}" @click="changePage(currentPage-1)">&lt;</li>
+      <li v-for="p in pages" :key="p" :class="{active: p === currentPage}" @click="changePage(p)">{{ p + 1 }}</li>
+      <li :class="{disabled: currentPage === pages.length - 1}" @click="changePage(currentPage+1)">&gt;</li>
     </ul>
   </div>
 
@@ -23,10 +24,13 @@
       data: {type: Array, default: ()=>[]},
       options: {type: Object, default: ()=>({limit: 25, offset: 0})},
     },
+    // Declare the 'page-changed' event
+    emits: ['page-changed'], 
     computed: {
       // sort data by name
       sortedData() {
-        return this.data.sort((a, b)=>{
+        // Fixed by cloning 'this.data' with [...this.data] to avoid mutating the original array
+        return [...this.data].sort((a, b)=>{
           if (a.name < b.name) {
             return -1;
           } else if (a.name > b.name) {
@@ -43,7 +47,8 @@
       pages() {
         return new Array(Math.ceil(this.data.length / this.options.pagination.limit))
           .fill()
-          .map((v, i)=>i);
+          // Since we only need the index 'i', 'v' is removed and replaced with '_' to indicate it is ignored.
+          .map((_, i)=>i);
       },
       // currently displayed page
       currentPage() {
@@ -52,7 +57,11 @@
     },
     methods: {
       changePage(page) {
-        this.options.pagination.offset = (page) * this.options.pagination.limit;
+        // Removed directly mutating the options prop, which is not recommended in Vue
+        if (page >= 0 && page < this.pages.length) {
+          // Added 'page-changed' event to notify the parent (App.vue) about the page change
+          this.$emit('page-changed', page);
+        }
       },
     },
   };
