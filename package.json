@@ -27,12 +27,12 @@
     "@vue/cli-plugin-router": "~5.0.8",
     "@vue/cli-plugin-vuex": "~5.0.8",
     "@vue/cli-service": "~5.0.8",
-    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/compiler-sfc": "^3.5.13",
     "babel-eslint": "^10.1.0",
     "eslint": "^8.43.0",
     "eslint-config-suade": "^4.0.9",
-    "sass": "^1.72.0",
-    "sass-loader": "^14.1.1"
+    "sass": "^1.86.0",
+    "sass-loader": "^16.0.5"
   },
   "eslintConfig": {
     "extends": [
