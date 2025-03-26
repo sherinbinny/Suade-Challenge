@@ -117,4 +117,114 @@
 
   // TODO: Add your CSS Styling here
 
+  body
+  {
+    font-family: var(--font);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0 15px;
+  }
+
+  .container
+  {
+    display: flex;
+    gap: calc(var(--item-margin) * 2);
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 20px 0;
+    width: 100%;
+  }
+
+  .item
+  {
+    color: #fff;
+    border-radius: var(--border-radius);
+    padding: var(--item-padding);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+
+    &:nth-child(4n+1)
+    {
+      background-color: var(--background-2);
+    }
+    &:nth-child(4n+2)
+    {
+      background-color: var(--background-3);
+    }
+    &:nth-child(4n+3)
+    {
+      background-color: var(--background-2);
+    }
+    &:nth-child(4n+4)
+    {
+      background-color: var(--background-1);
+    }
+  }
+
+  .name
+  {
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .eye-color
+  {
+    display: flex;
+    justify-content: start;
+
+    .eye-icon
+    {
+      width: 30px;
+      height: 30px;
+      margin: -5px 0 0 5px;
+    }
+
+    .brown
+    {
+      filter: hue-rotate(var(--eye-brown));
+    }
+
+    .green
+    {
+      filter: hue-rotate(var(--eye-green));
+    }
+
+    .blue
+    {
+      filter: hue-rotate(var(--eye-blue));
+    }
+  }
+
+  @media (max-width: 600px)
+  {
+    .item
+    {
+      flex-basis: calc((100% / var(--items-by-row-when-screen-is-less-than-600px)) - var(--item-margin)* 6);
+      max-width: calc((100% / var(--items-by-row-when-screen-is-less-than-600px)) - var(--item-margin)* 6);
+    }
+  }
+
+  @media (min-width: 600px) and (max-width: 1024px)
+  {
+    .item
+    {
+      flex-basis: calc((100% / var(--items-by-row-when-screen-is-more-than-600px)) - var(--item-margin)* 6);
+      max-width: calc((100% / var(--items-by-row-when-screen-is-more-than-600px)) - var(--item-margin)* 6);
+    }
+  }
+
+  @media (min-width: 1024px)
+  {
+    .item
+    {
+      flex-basis: calc((100% / var(--items-by-row-when-screen-is-more-than-1024px)) - var(--item-margin)* 6);
+      max-width: calc((100% / var(--items-by-row-when-screen-is-more-than-1024px)) - var(--item-margin)* 6);
+    }
+  }
+
 </style>
