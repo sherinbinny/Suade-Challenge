@@ -67,9 +67,11 @@ git commit -m "exercise 2"
 Without changing any HTML or Javascript, and using predefined CSS variables,
 update the style of the page, so then it matches the designs and situations below:
 
-![background-layout](../challenge/exercise3/src/assets/backgroundLayout.png)
-![dynamic](../challenge/exercise3/src/assets/dynamic.gif)
-![responsive](../challenge/exercise3/src/assets/responsive.gif)
+![background-layout](./exercise3/src/assets/backgroundLayout.png)
+
+![dynamic](./exercise3/src/assets/dynamic.gif)
+
+![responsive](./exercise3/src/assets/responsive.gif)
 
 Commit your code using the following message
 ```
