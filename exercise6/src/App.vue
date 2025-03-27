@@ -99,6 +99,11 @@
           this.pagination.offset = 0;
         },
       },
+      // Reset pagination to the first page when the search string changes
+      searchString()
+      {
+        this.pagination.offset = 0;
+      },
     },
   };
 
