@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul class="people-list">
     <li v-for="item in sortedData" :key="item._id">
       <slot v-bind:item="item"></slot>
     </li>
@@ -26,5 +26,9 @@
 </script>
 
 <style scoped lang="scss">
-
+  .people-list
+  {
+    list-style: none;
+    padding: 0;
+  }
 </style>
