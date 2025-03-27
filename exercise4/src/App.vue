@@ -18,13 +18,16 @@
     <h4>Solution</h4>
     <div class="solution">
       <!-- TODO: implement template here -->
+      <!-- Row to display the column headers: Name, Age, Eye Color, and Gender -->
       <div class="header-row">
         <span class="header-item">Name</span>
         <span class="header-item">Age</span>
         <span class="header-item">Eye Color</span>
         <span class="header-item">Gender</span>
       </div>
+      <!-- List component to render the list of people with applied filtering and sorting -->
       <List :data="people" :filtering="filterByAge(25, 35)" :sorting="sortByAge">
+        <!-- Slot to customize the way each person is displayed (name, age, eye color, and gender) -->
         <template v-slot:default="{ item }">
           <div class="list-row">
             <span class="list-item">{{ item.name }}</span>
@@ -50,10 +53,13 @@
       List,
     },
     computed: {
+      // Map the Vuex state to access the list of people from store.js
       ...mapState(['people']),
     },
     methods: {
+      // Map Vuex actions to fetch the people data from store.js
       ...mapActions(['getPeople']),
+      // Filter and Sort people based on age, using the helper functions from helpers.js
       filterByAge(minAge, maxAge) {
         return helpers.filterByAge(minAge, maxAge);
       },
@@ -62,6 +68,7 @@
       },
     },
     created() {
+      // Fetch the people data from the store when the component is created
       this.getPeople();
     },
   };
